@@ -1,0 +1,56 @@
+server {
+  <% if @default == true %>
+  listen   <%= node['nginx']['port'] -%> default_server;
+  listen [::]:<%= node['nginx']['port'] -%> default_server ipv6only=on;
+  listen 443 ssl;
+  listen [::]:443 ssl;
+  <% else %>
+  listen   <%= node['nginx']['port'] -%>;
+  listen [::]:<%= node['nginx']['port'] -%>;
+  listen 443 ssl;
+  listen [::]:443 ssl;
+  <% end %>
+  
+  <% if @subdomain == "www" -%>
+  server_name <%= @subdomain %>.<%= @domain %> <%= @domain %>;
+  <% else %>
+  server_name <%= @subdomain %>.<%= @domain %>;
+  <% end -%>
+  
+  <% if @force_ssl -%>
+  if ($scheme = http) {
+      return 301 https://$server_name$request_uri;
+  }
+  <% end -%>
+  
+  ssl_certificate /etc/nginx/ssl/<%= @subdomain %>.<%= @domain %>/ssl.pem;
+  ssl_certificate_key /etc/nginx/ssl/<%= @subdomain %>.<%= @domain %>/ssl.key;
+
+  access_log  <%= node['nginx']['log_dir'] %>/<%= @subdomain %>.<%= @domain %>.access.log;
+  error_log   <%= node['nginx']['log_dir'] %>/<%= @subdomain %>.<%= @domain %>.error.log;
+
+  location / {
+    include uwsgi_params;
+    uwsgi_pass unix:<%= @uwsgi_socket %>;
+  }
+  
+  location /assets/ {
+    root /var/uploads/<%= @subdomain %>.<%= @domain %>;
+    sendfile           on;
+    sendfile_max_chunk 1m;
+    tcp_nopush on;
+    tcp_nodelay       on;
+    keepalive_timeout 65;  
+  }
+  
+  location /static/ {
+    root /var/<%= @domain %>/<%= @subdomain %>/app/static;
+    sendfile           on;
+    sendfile_max_chunk 1m;
+    tcp_nopush on;
+    tcp_nodelay       on;
+    keepalive_timeout 65;  
+  }
+  
+  sendfile <%= @sendfile %>;
+}

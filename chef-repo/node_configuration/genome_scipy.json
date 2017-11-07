@@ -1,0 +1,55 @@
+{
+  "name": "genome-scipy.dev",
+  "chef_environment": "development",
+  "json_class": "Chef::Node",
+  "automatic": {
+
+  },
+  "normal": {
+
+  },
+  "chef_type": "node",
+  "default": {
+
+  },
+  "override": {
+
+  },
+  "vagrant" : {
+  	":name": "genome-scipy.dev",
+  	"exclusions": [],
+  	":ip": "192.168.80.80",
+  	":host": "genome-scipy.dev",
+  	":aliases": ["app.genome-scipy.dev", "genome-scipy.dev"],
+  	"ports": [
+  		{
+  			":host": 8080,
+  			":guest": 80
+  		},
+  		{
+  			":host": 9025,
+  			":guest": 9025
+  		}
+  	],
+  	":memory": 2048,
+  	"synced_folder": [
+  		{
+  			":host_machine_path": "app",
+  			":guest_machine_path": "/var/genome-scipy.dev/app",
+  			"ownership_options": {
+	  			":owner": "vagrant",
+	  			":group": "www-data",
+	  			":mount_options": {
+	  				":dmode":775,
+	  				":fmode":775
+	  			}
+  			}
+  		}
+  	]
+  },
+  "run_list": [
+  	"genome_scipy_app::local-provisioning",
+  	"genome_scipy_supervisor::restart",
+  	"genome_scipy_app::uwsgi-reload"
+  ]
+}

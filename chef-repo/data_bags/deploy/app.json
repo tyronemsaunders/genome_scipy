@@ -1,0 +1,126 @@
+{
+ "id" : "app",
+ "development" : [
+    {
+      "subdomain" : "app",
+      "hostname" : "genome-scipy-app-development",
+      "domain" : "genome-scipy.dev",
+      "port" : 5001,
+      "git" : {
+        "repository" : "git@github.com:tyronemsaunders/genome_scipy.git",
+        "branch" : "master"
+      },
+      "config" : {
+      	"uwsgi" : {
+      		"wsgi-file" : "/var/genome-scipy.dev/app/wsgi.py",
+      		"protocol" : "uwsgi",
+      		"module" : "wsgi",
+      		"callable" : "app",
+      		"master" : true,
+      		"processes" : 1,
+      		"threads" : 8,
+      		"enable-threads" : true,
+      		"die-on-term" : true,
+      		"chmod-socket" : 666,
+      		"vacuum" : true,
+      		"disable-logging" : true,
+      		"max-worker-lifetime" : 30	
+      	}
+      },
+      "programs" : {
+      	"uwsgi" : {
+      		"command" : "/var/genome-scipy.dev/app/.venv/bin/uwsgi --ini /var/genome-scipy.dev/app/.uwsgi/app.ini",
+      		"directory" : "/var/genome-scipy.dev/app",
+      		"redirect_stderr" : true,
+      		"stdout_logfile" : "/var/log/supervisor/uwsgi.log",
+      		"stderr_logfile" : "/var/log/supervisor/uwsgi.error.log",
+      		"autostart": true,
+      		"autorestart": true,
+      		"stopsignal": "QUIT"
+      	}
+      }
+    }
+  ],
+  "staging" : [
+    {
+      "subdomain" : "app",
+      "hostname" : "genome-scipy-app-staging",
+      "domain" : "genome-scipy.com",
+      "port" : 5001,
+      "git" : {
+        "repository" : "git@github.com:tyronemsaunders/genome_scipy.git",
+        "branch" : "master"
+      },
+      "config" : {
+      	"uwsgi" : {
+      		"wsgi-file" : "/var/genome-scipy.com/app/wsgi.py",
+      		"protocol" : "uwsgi",
+      		"module" : "wsgi",
+      		"callable" : "app",
+      		"master" : true,
+      		"processes" : 1,
+      		"threads" : 8,
+      		"enable-threads" : true,
+      		"die-on-term" : true,
+      		"chmod-socket" : 666,
+      		"vacuum" : true,
+      		"disable-logging" : true,
+      		"max-worker-lifetime" : 30	
+      	}
+      },
+      "programs" : {
+      	"uwsgi" : {
+      		"command" : "/var/genome-scipy.com/app/.venv/bin/uwsgi --ini /var/genome-scipy.com/app/.uwsgi/app.ini",
+      		"directory" : "/var/genome-scipy.com/app",
+      		"redirect_stderr" : true,
+      		"stdout_logfile" : "/var/log/supervisor/uwsgi.log",
+      		"stderr_logfile" : "/var/log/supervisor/uwsgi.error.log",
+      		"autostart": true,
+      		"autorestart": true,
+      		"stopsignal": "QUIT"
+      	}
+      }
+    }
+  ],
+  "production" : [
+    {
+      "subdomain" : "app",
+      "hostname" : "genome-scipy-app-production",
+      "domain" : "genome-scipy.com",
+      "port" : 5001,
+      "git" : {
+        "repository" : "git@github.com:tyronemsaunders/genome_scipy.git",
+        "branch" : "master"
+      },
+      "config" : {
+      	"uwsgi" : {
+      		"wsgi-file" : "/var/genome-scipy.dev/app/wsgi.py",
+      		"protocol" : "uwsgi",
+      		"module" : "wsgi",
+      		"callable" : "app",
+      		"master" : true,
+      		"processes" : 1,
+      		"threads" : 8,
+      		"enable-threads" : true,
+      		"die-on-term" : true,
+      		"chmod-socket" : 666,
+      		"vacuum" : true,
+      		"disable-logging" : true,
+      		"max-worker-lifetime" : 30	
+      	}
+      },
+      "programs" : {
+      	"uwsgi" : {
+      		"command" : "/var/genome-scipy.com/app/.venv/bin/uwsgi --ini /var/genome-scipy.com/app/.uwsgi/app.ini",
+      		"directory" : "/var/genome-scipy.com/app",
+      		"redirect_stderr" : true,
+      		"stdout_logfile" : "/var/log/supervisor/uwsgi.log",
+      		"stderr_logfile" : "/var/log/supervisor/uwsgi.error.log",
+      		"autostart": true,
+      		"autorestart": true,
+      		"stopsignal": "QUIT"
+      	}
+      }
+    }
+  ]
+}

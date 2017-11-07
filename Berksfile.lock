@@ -1,0 +1,83 @@
+DEPENDENCIES
+  genome_scipy_app
+    path: chef-repo/wrapper_cookbooks/genome_scipy_app
+  genome_scipy_base
+    path: chef-repo/wrapper_cookbooks/genome_scipy_base
+  genome_scipy_github
+    path: chef-repo/wrapper_cookbooks/genome_scipy_github
+  genome_scipy_nginx
+    path: chef-repo/wrapper_cookbooks/genome_scipy_nginx
+  genome_scipy_openssl
+    path: chef-repo/wrapper_cookbooks/genome_scipy_openssl
+  genome_scipy_python
+    path: chef-repo/wrapper_cookbooks/genome_scipy_python
+  genome_scipy_supervisor
+    path: chef-repo/wrapper_cookbooks/genome_scipy_supervisor
+
+GRAPH
+  apt (6.1.4)
+  build-essential (8.0.3)
+    mingw (>= 1.1)
+    seven_zip (>= 0.0.0)
+  compat_resource (12.19.0)
+  genome_scipy_app (0.1.0)
+    genome_scipy_base (>= 0.0.0)
+    genome_scipy_github (>= 0.0.0)
+    genome_scipy_nginx (>= 0.0.0)
+    genome_scipy_openssl (>= 0.0.0)
+    genome_scipy_python (>= 0.0.0)
+    genome_scipy_supervisor (>= 0.0.0)
+    nginx (~> 7.0.0)
+    openssl (~> 7.1.0)
+    poise-python (~> 1.6.0)
+    users (~> 5.2.1)
+  genome_scipy_base (0.1.0)
+    apt (~> 6.1.4)
+    git (~> 8.0.0)
+    openssl (~> 7.1.0)
+    sudo (~> 3.5.3)
+    users (~> 5.2.1)
+    vim (~> 2.0.2)
+  genome_scipy_github (0.1.0)
+  genome_scipy_nginx (0.1.0)
+    nginx (~> 7.0.0)
+  genome_scipy_openssl (0.1.0)
+    openssl (~> 7.1.0)
+  genome_scipy_python (0.1.0)
+    poise-python (~> 1.6.0)
+  genome_scipy_supervisor (0.1.0)
+    poise-python (~> 1.6.0)
+    users (~> 5.2.1)
+  git (8.0.0)
+    build-essential (>= 0.0.0)
+    homebrew (>= 0.0.0)
+  homebrew (4.2.0)
+  mingw (2.0.1)
+    seven_zip (>= 0.0.0)
+  nginx (7.0.0)
+    build-essential (>= 0.0.0)
+    compat_resource (>= 12.16.3)
+    ohai (>= 4.1.0)
+    yum-epel (>= 0.0.0)
+    zypper (>= 0.0.0)
+  ohai (5.2.0)
+  openssl (7.1.0)
+  poise (2.8.1)
+  poise-archive (1.5.0)
+    poise (~> 2.6)
+  poise-languages (2.1.1)
+    poise (~> 2.5)
+    poise-archive (~> 1.0)
+  poise-python (1.6.0)
+    poise (~> 2.7)
+    poise-languages (~> 2.0)
+  seven_zip (2.0.2)
+    windows (>= 1.2.2)
+  sudo (3.5.3)
+  users (5.2.1)
+  vim (2.0.2)
+  windows (3.2.0)
+    ohai (>= 4.0.0)
+  yum-epel (2.1.2)
+    compat_resource (>= 12.16.3)
+  zypper (0.4.0)
