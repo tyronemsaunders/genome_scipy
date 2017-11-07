@@ -17,6 +17,7 @@ Optional requirements for local development:
 	* [vagrant-omnibus](https://github.com/chef/vagrant-omnibus) - A vagrant plugin used for ensuring the desired version of Chef is installed.
 	* [vagrant-hostmanager](https://github.com/devopsgroup-io/vagrant-hostmanager) - A Vagrant plugin used for managing host files on the users workstation.
 	* [vagrant-berkshelf](https://github.com/berkshelf/vagrant-berkshelf) - A Vagrant plugin used for adding Berkshelf integration to Chef provisioners.
+	* [vagrant-triggers](https://github.com/emyl/vagrant-triggers) - A Vagrant plugin that allows the definition of arbitrary scripts that will run on the host before and/or after Vagrant commands.
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) - Used to support the creation of virtual machines running versions of operating systems on a user's workstation.
 
 ### Virtual Machine
@@ -151,6 +152,7 @@ The `data_bags/deploy/app.json` must be created in following format:
 }
 ```
 Create a JSON file `data_bags/deploy/app.json` in the format above and complete the file with your information.
+
 TODO: describe JSON keys and values.
 
 #### Data Bags - Secrets
@@ -210,6 +212,7 @@ The `data-bags/secrets/github.json` data bag item is not saved in version contro
 }
 ```
 Create a JSON file `data_bags/secrets/github.json` in the format above and complete the file with your information.
+
 TODO: describe JSON keys and values.
 
 * `data_bags/secrets/host_machine.json` - Data bag item that contains the path to the project on the user's workstation.
@@ -265,6 +268,7 @@ The `data_bags/secrets/ssh_keys.json` data bag item is not saved in version cont
 }
 ```
 Create a JSON file `data_bags/secrets/ssh_keys.json` in the format above and complete the file with your information.
+
 TODO: describe JSON keys and values.
 
 #### Data Bags - Users
@@ -314,7 +318,7 @@ $ knife data bag show secrets aws -Fj > data_bags/secrets/aws.json
 git add /PATH/TO/PROJECT/chef-repo/data_bags/secrets/aws.json
 git commit -m "Saved encrypted data bag for aws secrets"
 ``` 
-Reference the (documentation)[https://docs.chef.io/knife_data_bag.html] for `knife data bag` for more instructions on using the command.
+Reference the [documentation](https://docs.chef.io/knife_data_bag.html) for `knife data bag` for more instructions on using the command.
 
 ## Usage
 

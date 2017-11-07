@@ -4,7 +4,7 @@ A project to gain familiarity with Next Generation Sequencing (NGS) and using Py
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get a copy of the project up and running on your workstation for development and testing purposes. See deployment for notes on how to deploy the project to a production environment.
 
 ### Prerequisites
 
@@ -25,7 +25,7 @@ Usage: vagrant [options] <command> [<args>]
 # ...
 ```
 
-Additionally, Vagrant requires packages install the `vagrant-hostmanager`, `vagrant-omnibus`, `vagrant-berkshelf` and `vagrant-triggers` packages using the following commands:
+Additionally Vagrant requires packages, install the `vagrant-hostmanager`, `vagrant-omnibus`, `vagrant-berkshelf` and `vagrant-triggers` packages using the following commands:
 ```
 $ vagrant plugin install vagrant-omnibus
 $ vagrant plugin install vagrant-hostmanager
@@ -53,11 +53,11 @@ $ git clone https://github.com/tyronemsaunders/genome_scipy.git .
 
 #### Configuration
 
-Configuration for your system will require editing files in the `chef-repo/` directory and the Vagrantfile.
+Configuration for your system will require editing files in the `chef-repo/` directory and the `Vagrantfile`.
 
 ##### Chef Configuration
 
-Reference the (configuration)[https://github.com/tyronemsaunders/genome_scipy#Configuration] section of `chef-repo/readme.md` for configuration instructions.
+Reference the [Configuration](https://github.com/tyronemsaunders/genome_scipy/chef-repo#configuration) section of `chef-repo/readme.md` for configuration instructions.
 
 ##### Vagrantfile Configuration
 
