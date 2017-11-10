@@ -1,0 +1,42 @@
+{
+ "id" : "jupyter",
+ "development" : [
+    {
+      "subdomain" : "jupyter",
+      "hostname" : "genome-scipy-jupyter-development",
+      "domain" : "genome-scipy.dev",
+      "port" : 5020,
+      "nginx_config_template" : "jupyter-nginx.conf.erb",
+	  "ssl" : false,
+	  "npm" : {
+	  	"global": [],
+	  	"local": []
+	  },
+      "git" : {
+        "repository" : "git@github.com:tyronemsaunders/genome_scipy.git",
+        "branch" : "master"
+      },
+      "config" : {
+      	"jupyter" : {}
+      },
+      "programs" : {
+      	"jupyter" : {
+      		"command" : "/var/genome-scipy.dev/jupyter/.venv/bin/jupyter notebook --config=/etc/jupyter/jupyter.genome-scipy.dev_config.py",
+      		"directory" : "/var/genome-scipy.dev/jupyter",
+      		"redirect_stderr" : true,
+      		"stdout_logfile" : "/var/log/supervisor/jupyter.log",
+      		"stderr_logfile" : "/var/log/supervisor/jupyter.error.log",
+      		"autostart": true,
+      		"autorestart": true,
+      		"stopsignal": "QUIT"
+      	}
+      }
+    }
+  ],
+  "staging" : [
+
+  ],
+  "production" : [
+
+  ]
+}

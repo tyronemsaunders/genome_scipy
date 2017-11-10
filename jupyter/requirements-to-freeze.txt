@@ -1,0 +1,25 @@
+numpy
+scipy
+matplotlib
+ipython
+jupyter
+pandas
+sympy
+nose
+scikit-image
+scikit-learn
+h5py
+ipykernel
+jupyter_contrib_nbextensions
+ipywidgets
+bokeh
+tensorflow
+Theano[test, doc]
+keras
+nltk
+gensim
+scrapy
+statsmodels
+requests
+beautifulsoup4
+html5lib

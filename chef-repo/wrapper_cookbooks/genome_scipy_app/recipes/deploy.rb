@@ -49,6 +49,7 @@ apps.each do |app|
   domain = app['domain']
   port = app['port']
   force_ssl = app['ssl']
+  nginx_template = app['nginx_config_template']
   
   if subdomain == 'www'
     server_name = domain
@@ -104,7 +105,7 @@ apps.each do |app|
   
   python_virtualenv "/var/#{domain}/#{subdomain}/.venv" do
     python '2' # for the python runtime use the "system" version of python
-    setuptools_version '35.0.2' # issue with v36.X.X https://github.com/pypa/setuptools/issues/1042
+    #setuptools_version '35.0.2' # issue with v36.X.X https://github.com/pypa/setuptools/issues/1042
     user 'www-data'
     group 'www-data'
   end
@@ -193,7 +194,7 @@ apps.each do |app|
   # setup nginx configuration 
   nginx_site server_name do
     action :enable
-    template 'nginx.conf.erb'
+    template nginx_template
     variables(
       :default => false,
       :sendfile => 'off',

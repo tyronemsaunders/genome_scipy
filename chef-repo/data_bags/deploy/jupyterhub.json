@@ -1,0 +1,42 @@
+{
+ "id" : "jupyterhub",
+ "development" : [
+    {
+      "subdomain" : "jupyterhub",
+      "hostname" : "genome-scipy-jupyterhub-development",
+      "domain" : "genome-scipy.dev",
+      "port" : 5010,
+      "nginx_config_template" : "jupyterhub-nginx.conf.erb",
+	  "ssl" : false,
+	  "npm" : {
+	  	"global": ["configurable-http-proxy"],
+	  	"local": []
+	  },
+      "git" : {
+        "repository" : "git@github.com:tyronemsaunders/genome_scipy.git",
+        "branch" : "master"
+      },
+      "config" : {
+      	"jupyterhub" : {}
+      },
+      "programs" : {
+      	"jupyterhub" : {
+      		"command" : "/var/genome-scipy.dev/jupyterhub/.venv/bin/jupyterhub -f /etc/jupyterhub/jupyterhub.genome-scipy.dev_config.py",
+      		"directory" : "/var/genome-scipy.dev/jupyterhub",
+      		"redirect_stderr" : true,
+      		"stdout_logfile" : "/var/log/supervisor/jupyterhub.log",
+      		"stderr_logfile" : "/var/log/supervisor/jupyterhub.error.log",
+      		"autostart": true,
+      		"autorestart": true,
+      		"stopsignal": "QUIT"
+      	}
+      }
+    }
+  ],
+  "staging" : [
+
+  ],
+  "production" : [
+
+  ]
+}

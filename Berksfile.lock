@@ -5,8 +5,14 @@ DEPENDENCIES
     path: chef-repo/wrapper_cookbooks/genome_scipy_base
   genome_scipy_github
     path: chef-repo/wrapper_cookbooks/genome_scipy_github
+  genome_scipy_jupyter
+    path: chef-repo/wrapper_cookbooks/genome_scipy_jupyter
+  genome_scipy_jupyterhub
+    path: chef-repo/wrapper_cookbooks/genome_scipy_jupyterhub
   genome_scipy_nginx
     path: chef-repo/wrapper_cookbooks/genome_scipy_nginx
+  genome_scipy_nodejs
+    path: chef-repo/wrapper_cookbooks/genome_scipy_nodejs
   genome_scipy_openssl
     path: chef-repo/wrapper_cookbooks/genome_scipy_openssl
   genome_scipy_python
@@ -16,6 +22,10 @@ DEPENDENCIES
 
 GRAPH
   apt (6.1.4)
+  ark (3.1.0)
+    build-essential (>= 0.0.0)
+    seven_zip (>= 0.0.0)
+    windows (>= 0.0.0)
   build-essential (8.0.3)
     mingw (>= 1.1)
     seven_zip (>= 0.0.0)
@@ -39,8 +49,34 @@ GRAPH
     users (~> 5.2.1)
     vim (~> 2.0.2)
   genome_scipy_github (0.1.0)
+  genome_scipy_jupyter (0.1.0)
+    genome_scipy_base (>= 0.0.0)
+    genome_scipy_github (>= 0.0.0)
+    genome_scipy_nginx (>= 0.0.0)
+    genome_scipy_nodejs (>= 0.0.0)
+    genome_scipy_openssl (>= 0.0.0)
+    genome_scipy_python (>= 0.0.0)
+    genome_scipy_supervisor (>= 0.0.0)
+    nginx (~> 7.0.0)
+    nodejs (~> 4.0.0)
+    openssl (~> 7.1.0)
+    poise-python (~> 1.6.0)
+  genome_scipy_jupyterhub (0.1.0)
+    genome_scipy_base (>= 0.0.0)
+    genome_scipy_github (>= 0.0.0)
+    genome_scipy_nginx (>= 0.0.0)
+    genome_scipy_nodejs (>= 0.0.0)
+    genome_scipy_openssl (>= 0.0.0)
+    genome_scipy_python (>= 0.0.0)
+    genome_scipy_supervisor (>= 0.0.0)
+    nginx (~> 7.0.0)
+    nodejs (~> 4.0.0)
+    openssl (~> 7.1.0)
+    poise-python (~> 1.6.0)
   genome_scipy_nginx (0.1.0)
     nginx (~> 7.0.0)
+  genome_scipy_nodejs (0.1.0)
+    nodejs (~> 4.0.0)
   genome_scipy_openssl (0.1.0)
     openssl (~> 7.1.0)
   genome_scipy_python (0.1.0)
@@ -60,6 +96,10 @@ GRAPH
     ohai (>= 4.1.0)
     yum-epel (>= 0.0.0)
     zypper (>= 0.0.0)
+  nodejs (4.0.0)
+    ark (>= 2.0.2)
+    build-essential (>= 0.0.0)
+    compat_resource (>= 12.16)
   ohai (5.2.0)
   openssl (7.1.0)
   poise (2.8.1)
