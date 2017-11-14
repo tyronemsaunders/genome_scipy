@@ -4,16 +4,32 @@
 #
 # Copyright:: 2017, Tyrone Saunders, All Rights Reserved.
 
+#########################
+# Update Apt Repository #
+#########################
+apt_repository 'jonathonf_ppa' do
+  uri 'ppa:jonathonf/python-3.6'
+end
+
 #######################################
 # Install Python, pip, and virtualenv #
 #######################################
 python_runtime '2' do
   version '2.7'
-  setuptools_version '35.0.2'
-  provider :system
+  options(
+    :provider => 'system',
+    :package_name => 'python2.7',
+    :dev_package => true
+  )
   action :install
 end
 
-python_runtime_options '2' do
-  dev_package true
+python_runtime '3' do
+  version '3.6'
+  options(
+    :provider => 'system',
+    :package_name => 'python3.6',
+    :dev_package => true
+  )
+  action :install
 end

@@ -1,0 +1,117 @@
+{
+ "id" : "jupyter",
+ "development" : [
+    {
+      "subdomain" : "jupyter",
+      "hostname" : "genome-scipy-jupyter-development",
+      "domain" : "genome-scipy.dev",
+      "port" : 5020,
+      "nginx_config_template" : "jupyter-nginx.conf.erb",
+	  "ssl" : false,
+	  "npm" : {
+	  	"global": [],
+	  	"local": []
+	  },
+	  "apt" : [],
+	  "commands" : [
+	  	"/var/genome-scipy.dev/jupyter/.venv/bin/jupyter contrib nbextension install --sys-prefix",
+	  	"/var/genome-scipy.dev/jupyter/.venv/bin/jupyter nbextension enable --py widgetsnbextension --sys-prefix"
+	  ],
+      "git" : {
+        "repository" : "git@github.com:tyronemsaunders/genome_scipy_jupyter.git",
+        "branch" : "master"
+      },
+      "config" : {
+      	"jupyter" : {}
+      },
+      "programs" : {
+      	"jupyter" : {
+      		"command" : "/var/genome-scipy.dev/jupyter/.venv/bin/jupyter notebook --config=/etc/jupyter/jupyter.genome-scipy.dev_config.py",
+      		"directory" : "/var/genome-scipy.dev/jupyter",
+      		"redirect_stderr" : true,
+      		"stdout_logfile" : "/var/log/supervisor/jupyter.log",
+      		"stderr_logfile" : "/var/log/supervisor/jupyter.error.log",
+      		"autostart": true,
+      		"autorestart": true,
+      		"stopsignal": "QUIT"
+      	}
+      }
+    }
+  ],
+  "staging" : [
+  	{
+      "subdomain" : "jupyter-genome-staging",
+      "hostname" : "genome-scipy-jupyter-staging",
+      "domain" : "hiretyrone.com",
+      "port" : 5020,
+      "nginx_config_template" : "jupyter-nginx.conf.erb",
+	  "ssl" : true,
+	  "npm" : {
+	  	"global": [],
+	  	"local": []
+	  },
+	  "apt" : [],
+	  "commands" : [
+	  	"/var/hiretyrone.com/jupyter-genome-staging/.venv/bin/jupyter contrib nbextension install --sys-prefix",
+	  	"/var/hiretyrone.com/jupyter-genome-staging/.venv/bin/jupyter nbextension enable --py widgetsnbextension --sys-prefix"
+	  ],
+      "git" : {
+        "repository" : "git@github.com:tyronemsaunders/genome_scipy_jupyter.git",
+        "branch" : "master"
+      },
+      "config" : {
+      	"jupyter" : {}
+      },
+      "programs" : {
+      	"jupyter" : {
+      		"command" : "/var/hiretyrone.com/jupyter-genome-staging/.venv/bin/jupyter notebook --config=/etc/jupyter/jupyter-genome-staging.hiretyrone.com_config.py",
+      		"directory" : "/var/hiretyrone.com/jupyter-genome-staging",
+      		"redirect_stderr" : true,
+      		"stdout_logfile" : "/var/log/supervisor/jupyter.log",
+      		"stderr_logfile" : "/var/log/supervisor/jupyter.error.log",
+      		"autostart": true,
+      		"autorestart": true,
+      		"stopsignal": "QUIT"
+      	}
+      }
+    }
+  ],
+  "production" : [
+  	{
+      "subdomain" : "jupyter-genome",
+      "hostname" : "genome-scipy-jupyter-production",
+      "domain" : "hiretyrone.com",
+      "port" : 5020,
+      "nginx_config_template" : "jupyter-nginx.conf.erb",
+	  "ssl" : true,
+	  "npm" : {
+	  	"global": [],
+	  	"local": []
+	  },
+	  "apt" : [],
+	  "commands" : [
+	  	"/var/hiretyrone.com/jupyter-genome/.venv/bin/jupyter contrib nbextension install --sys-prefix",
+	  	"/var/hiretyrone.com/jupyter-genome/.venv/bin/jupyter nbextension enable --py widgetsnbextension --sys-prefix"
+	  ],
+      "git" : {
+        "repository" : "git@github.com:tyronemsaunders/genome_scipy_jupyter.git",
+        "branch" : "master"
+      },
+      "config" : {
+      	"jupyter" : {}
+      },
+      "programs" : {
+      	"jupyter" : {
+      		"command" : "/var/hiretyrone.com/jupyter-genome/.venv/bin/jupyter notebook --config=/etc/jupyter/jupyter-genome.hiretyrone.com_config.py",
+      		"directory" : "/var/hiretyrone.com/jupyter-genome",
+      		"redirect_stderr" : true,
+      		"stdout_logfile" : "/var/log/supervisor/jupyter.log",
+      		"stderr_logfile" : "/var/log/supervisor/jupyter.error.log",
+      		"autostart": true,
+      		"autorestart": true,
+      		"stopsignal": "QUIT"
+      	}
+      }
+    }
+  ]
+}

@@ -22,10 +22,10 @@ machine "monolith.#{app['domain']}" do
   # recipe run list
   recipe "genome_scipy_base::base"
   recipe "genome_scipy_github::ssh-wrapper"
-  recipe "genome_scipy_openssl::selfsigned-certificate"
   recipe "genome_scipy_nginx::install"
   recipe "genome_scipy_python::install"
   recipe "genome_scipy_supervisor::install"
+  recipe "genome_scipy_app::selfsigned-certificate"
   recipe "genome_scipy_app::deploy"
   recipe "genome_scipy_app::settings"
   chef_environment node.chef_environment

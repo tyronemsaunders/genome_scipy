@@ -41,14 +41,24 @@ if Chef::Config[:solo]
   default['secrets']['aws'] = Chef::DataBagItem.load('secrets', 'aws')
   default['secrets']['github'] = Chef::DataBagItem.load('secrets', 'github')
   default['secrets']['data_bag'] = Chef::DataBagItem.load('secrets', 'data_bag')
-  default['secrets']['host_machine'] = Chef::DataBagItem.load('secrets', 'host_machine')  
+  default['secrets']['host_machine'] = Chef::DataBagItem.load('secrets', 'host_machine')
+  default['secrets']['jupyterhub_users'] = Chef::DataBagItem.load('secrets', 'jupyterhub_users') 
+  default['secrets']['oauth'] = Chef::DataBagItem.load('secrets', 'oauth') 
+  default['secrets']['openssl'] = Chef::DataBagItem.load('secrets', 'openssl')  
+  default['secrets']['ssh_keys'] = Chef::DataBagItem.load('secrets', 'ssh_keys')   
 else
   default['secrets']['aws'] = Chef::EncryptedDataBagItem.load('secrets', 'aws')
   default['secrets']['github'] = Chef::EncryptedDataBagItem.load('secrets', 'github')
   default['secrets']['data_bag'] = Chef::EncryptedDataBagItem.load('secrets', 'data_bag')
-  default['secrets']['host_machine'] = Chef::EncryptedDataBagItem.load('secrets', 'host_machine')  
+  default['secrets']['host_machine'] = Chef::EncryptedDataBagItem.load('secrets', 'host_machine') 
+  default['secrets']['jupyterhub_users'] = Chef::EncryptedDataBagItem.load('secrets', 'jupyterhub_users') 
+  default['secrets']['oauth'] = Chef::EncryptedDataBagItem.load('secrets', 'oauth') 
+  default['secrets']['openssl'] = Chef::EncryptedDataBagItem.load('secrets', 'openssl')  
+  default['secrets']['ssh_keys'] = Chef::EncryptedDataBagItem.load('secrets', 'ssh_keys') 
 end
 ##########################
 # Un-encrypted Data Bags #
 ##########################
 default['deploy']['app'] = Chef::DataBagItem.load('deploy', 'app')
+default['deploy']['jupyterhub'] = Chef::DataBagItem.load('deploy', 'jupyterhub')
+default['deploy']['jupyter'] = Chef::DataBagItem.load('deploy', 'jupyter')
