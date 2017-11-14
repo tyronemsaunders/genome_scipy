@@ -1,10 +1,14 @@
 DEPENDENCIES
   genome_scipy_app
     path: chef-repo/wrapper_cookbooks/genome_scipy_app
+  genome_scipy_aws
+    path: chef-repo/wrapper_cookbooks/genome_scipy_aws
   genome_scipy_base
     path: chef-repo/wrapper_cookbooks/genome_scipy_base
   genome_scipy_github
     path: chef-repo/wrapper_cookbooks/genome_scipy_github
+  genome_scipy_hosts
+    path: chef-repo/wrapper_cookbooks/genome_scipy_hosts
   genome_scipy_jupyter
     path: chef-repo/wrapper_cookbooks/genome_scipy_jupyter
   genome_scipy_jupyterhub
@@ -21,6 +25,8 @@ DEPENDENCIES
     path: chef-repo/wrapper_cookbooks/genome_scipy_supervisor
 
 GRAPH
+  acme (3.1.0)
+    compat_resource (>= 12.19)
   apt (6.1.4)
   ark (3.1.0)
     build-essential (>= 0.0.0)
@@ -30,17 +36,24 @@ GRAPH
     mingw (>= 1.1)
     seven_zip (>= 0.0.0)
   compat_resource (12.19.0)
+  cron (4.2.0)
+    compat_resource (>= 0.0.0)
   genome_scipy_app (0.1.0)
+    acme (~> 3.1.0)
+    cron (~> 4.2.0)
     genome_scipy_base (>= 0.0.0)
     genome_scipy_github (>= 0.0.0)
     genome_scipy_nginx (>= 0.0.0)
+    genome_scipy_nodejs (>= 0.0.0)
     genome_scipy_openssl (>= 0.0.0)
     genome_scipy_python (>= 0.0.0)
     genome_scipy_supervisor (>= 0.0.0)
     nginx (~> 7.0.0)
+    nodejs (~> 4.0.0)
     openssl (~> 7.1.0)
     poise-python (~> 1.6.0)
     users (~> 5.2.1)
+  genome_scipy_aws (0.1.0)
   genome_scipy_base (0.1.0)
     apt (~> 6.1.4)
     git (~> 8.0.0)
@@ -49,7 +62,10 @@ GRAPH
     users (~> 5.2.1)
     vim (~> 2.0.2)
   genome_scipy_github (0.1.0)
+  genome_scipy_hosts (0.1.0)
+    hostsfile (~> 3.0.1)
   genome_scipy_jupyter (0.1.0)
+    acme (~> 3.1.0)
     genome_scipy_base (>= 0.0.0)
     genome_scipy_github (>= 0.0.0)
     genome_scipy_nginx (>= 0.0.0)
@@ -62,6 +78,7 @@ GRAPH
     openssl (~> 7.1.0)
     poise-python (~> 1.6.0)
   genome_scipy_jupyterhub (0.1.0)
+    acme (~> 3.1.0)
     genome_scipy_base (>= 0.0.0)
     genome_scipy_github (>= 0.0.0)
     genome_scipy_nginx (>= 0.0.0)
@@ -88,6 +105,7 @@ GRAPH
     build-essential (>= 0.0.0)
     homebrew (>= 0.0.0)
   homebrew (4.2.0)
+  hostsfile (3.0.1)
   mingw (2.0.1)
     seven_zip (>= 0.0.0)
   nginx (7.0.0)

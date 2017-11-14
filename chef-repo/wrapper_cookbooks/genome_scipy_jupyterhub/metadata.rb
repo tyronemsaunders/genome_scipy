@@ -23,6 +23,7 @@ depends 'openssl',           '~> 7.1.0'
 depends 'nginx',             '~> 7.0.0'
 depends 'poise-python',      '~> 1.6.0'
 depends 'nodejs',            '~> 4.0.0'
+depends 'acme',              '~> 3.1.0'
 
 depends 'genome_scipy_base'
 depends 'genome_scipy_github'

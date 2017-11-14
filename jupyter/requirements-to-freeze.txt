@@ -23,3 +23,6 @@ statsmodels
 requests
 beautifulsoup4
 html5lib
+seaborn
+biopython
+pyvcf

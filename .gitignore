@@ -124,3 +124,7 @@ chef-repo/nodes/*.json
 ###################
 .vagrant
 .project
+.DS_Store
+
+.uwsgi
+app/.uwsgi

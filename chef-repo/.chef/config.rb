@@ -12,11 +12,10 @@ current_dir                  = File.dirname(__FILE__)
   data_bag_encrypt_version   2
   encrypted_data_bag_secret  "#{current_dir}/encrypted_data_bag_secret"
   trusted_certs_dir          "#{current_dir}/trusted_certs"
-  chef_server_url            "https://api.chef.io/organizations/#{ENV['ORGNAME']}"
+  chef_server_url            "https://chef.mintyross.com/organizations/#{ENV['ORGNAME']}"
   chef_repo_path             "../#{current_dir}"
   cookbook_path              [
-                              "#{current_dir}/../cookbooks",
-                              "#{current_dir}/../wrapper_cookbooks"
+                              "#{current_dir}/../cookbooks"
                              ]
   cookbook_copyright         "Tyrone Saunders"
   cookbook_license           ""

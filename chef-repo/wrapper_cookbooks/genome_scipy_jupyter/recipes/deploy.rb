@@ -98,6 +98,13 @@ apps.each do |app|
     end
   end 
   
+  # install apt packages
+  app['apt'].each do |apt_package|
+    package apt_package do
+      action :upgrade
+    end
+  end
+  
   # install npm packages
   app['npm']['global'].each do |npm_package|
      nodejs_npm npm_package
@@ -109,7 +116,7 @@ apps.each do |app|
      end
   end 
   
-  # create directory for virtualenv
+  # create a directory for the virtualenv
   directory "/var/#{domain}/#{subdomain}/.venv" do
     user 'www-data'
     group 'www-data'
@@ -148,32 +155,6 @@ apps.each do |app|
     ) 
   end
   
-  execute "copy nbextensions’ javascript and css files" do
-    command "/var/#{domain}/#{subdomain}/.venv/bin/jupyter contrib nbextension install --sys-prefix"
-    user node['jupyter']['user']
-    environment(
-      lazy {
-        {
-          'HOME' => ::Dir.home(node['jupyter']['user']),
-          'USER' => node['jupyter']['user']
-        }
-      }
-    )
-  end
-  
-  execute "enable widgetsnbextension" do
-    command "/var/#{domain}/#{subdomain}/.venv/bin/jupyter nbextension enable --py widgetsnbextension --sys-prefix"
-    user node['jupyter']['user']
-    environment(
-      lazy {
-        {
-          'HOME' => ::Dir.home(node['jupyter']['user']),
-          'USER' => node['jupyter']['user']
-        }
-      }
-    )
-  end
-  
   # generate the cookie secret
   file "#{node['jupyter']['directories']['runtime']}/#{subdomain}.#{domain}_cookie_secret" do
     owner node['jupyter']['user']
@@ -196,6 +177,24 @@ apps.each do |app|
       :ssl_cert_filename => "ssl.pem",
       :notebook_dir => "/var/#{domain}/#{subdomain}/jupyter/notebooks"
     )
+  end
+  
+  # run commands
+  app['commands'].each do |cmd|
+    execute "run #{cmd} command" do
+      live_stream true
+      user node['ssh']['user']
+      environment(
+        lazy {
+          {
+            'HOME' => ::Dir.home(node['ssh']['user']),
+            'USER' => node['ssh']['user']
+          }
+        }
+      )
+      cwd "/var/#{domain}/#{subdomain}"
+      command cmd
+    end
   end
   
   # setup programs running under supervisor

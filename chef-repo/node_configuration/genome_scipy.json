@@ -78,7 +78,6 @@
   "run_list": [
   	"genome_scipy_base::base",
 	"genome_scipy_github::ssh-wrapper",
-	"genome_scipy_openssl::selfsigned-certificate",
 	"genome_scipy_nginx::install",
 	"genome_scipy_python::install",
 	"genome_scipy_nodejs::install",
@@ -87,6 +86,7 @@
 	"genome_scipy_jupyterhub::deploy",
 	"genome_scipy_jupyter::selfsigned-certificate",
 	"genome_scipy_jupyter::deploy",
+	"genome_scipy_app::selfsigned-certificate",
   	"genome_scipy_app::deploy",
   	"genome_scipy_supervisor::restart",
   	"genome_scipy_app::uwsgi-reload"

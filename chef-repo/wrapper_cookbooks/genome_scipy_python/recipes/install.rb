@@ -16,7 +16,6 @@ end
 #######################################
 python_runtime '2' do
   version '2.7'
-  #setuptools_version '35.0.2'
   options(
     :provider => 'system',
     :package_name => 'python2.7',

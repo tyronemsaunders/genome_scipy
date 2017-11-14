@@ -9,4 +9,6 @@ cookbook 'genome_scipy_nginx', path: 'chef-repo/wrapper_cookbooks/genome_scipy_n
 cookbook 'genome_scipy_openssl', path: 'chef-repo/wrapper_cookbooks/genome_scipy_openssl'
 cookbook 'genome_scipy_python', path: 'chef-repo/wrapper_cookbooks/genome_scipy_python'
 cookbook 'genome_scipy_nodejs', path: 'chef-repo/wrapper_cookbooks/genome_scipy_nodejs'
-cookbook 'genome_scipy_supervisor', path: 'chef-repo/wrapper_cookbooks/genome_scipy_supervisor'     
+cookbook 'genome_scipy_supervisor', path: 'chef-repo/wrapper_cookbooks/genome_scipy_supervisor' 
+cookbook 'genome_scipy_hosts', path: 'chef-repo/wrapper_cookbooks/genome_scipy_hosts'  
+cookbook 'genome_scipy_aws', path: 'chef-repo/wrapper_cookbooks/genome_scipy_aws'    

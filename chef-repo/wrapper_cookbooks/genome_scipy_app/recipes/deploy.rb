@@ -16,6 +16,26 @@ env_vars = {
   "AWS_SHARED_CREDENTIALS_FILE" => "/etc/xdg/.config/.aws/credentials"
 }
 
+###############
+# Directories #
+###############
+directory node['app']['directories']['runtime'] do
+  owner node['ssh']['user']
+  mode '0755'
+  recursive true
+end
+
+directory node['app']['directories']['configuration'] do
+  owner node['ssh']['user']
+  mode '0770'
+  recursive true
+end
+
+################
+# Install Cron #
+################
+include_recipe 'cron'
+
 ##############
 # Deployment #
 ##############
@@ -94,7 +114,25 @@ apps.each do |app|
     end
   end  
   
-  # create and activate virtual env
+  # install apt packages
+  app['apt'].each do |apt_package|
+    package apt_package do
+      action :upgrade
+    end
+  end
+  
+  # install npm packages
+  app['npm']['global'].each do |npm_package|
+     nodejs_npm npm_package
+  end
+  
+  app['npm']['local'].each do |npm_package|
+     nodejs_npm npm_package do
+       path "/var/#{domain}/#{subdomain}"
+     end
+  end
+  
+  # create a directory for the virtualenv
   directory "/var/#{domain}/#{subdomain}/.venv" do
     user 'www-data'
     group 'www-data'
@@ -105,7 +143,6 @@ apps.each do |app|
   
   python_virtualenv "/var/#{domain}/#{subdomain}/.venv" do
     python '2' # for the python runtime use the "system" version of python
-    #setuptools_version '35.0.2' # issue with v36.X.X https://github.com/pypa/setuptools/issues/1042
     user 'www-data'
     group 'www-data'
   end
@@ -150,6 +187,24 @@ apps.each do |app|
       :name => 'uwsgi',
       :config => uwsgi_config
     )
+  end
+  
+  # run commands
+  app['commands'].each do |cmd|
+    execute "run #{cmd} command" do
+      live_stream true
+      user node['ssh']['user']
+      environment(
+        lazy {
+          {
+            'HOME' => ::Dir.home(node['ssh']['user']),
+            'USER' => node['ssh']['user']
+          }
+        }
+      )
+      cwd "/var/#{domain}/#{subdomain}"
+      command cmd
+    end
   end
   
   # setup programs running under supervisor
@@ -202,7 +257,50 @@ apps.each do |app|
       :subdomain => subdomain,
       :domain => domain,
       :port => port,
+      :ssl_directory => node['app']['directories']['ssl'],
       :uwsgi_socket => "/var/run/uwsgi/uwsgi-#{subdomain}.#{domain}.sock"
     )
+  end
+  
+  # setup cron jobs
+  app['cron_jobs'].each do |cron_job|
+    cron_d cron_job['name'] do
+      minute cron_job['minute']
+      hour cron_job['hour']
+      day cron_job['day']
+      month cron_job['month']
+      weekday cron_job['weekday']
+      mailto cron_job['mailto']
+      command cron_job['command']
+    end
+  end
+  
+  if app['jupyter']
+    # create directory for shell script
+    directory "/srv/jupyter/#{app['subdomain']}.#{app['domain']}" do
+      mode '0755'
+      recursive true
+    end
+    
+    node['deploy']['jupyter'][node.chef_environment].each do |jupyter|
+      # create a shell script that generates *.html files from *.ipynb files
+      template "/srv/jupyter/#{app['subdomain']}.#{app['domain']}/notebook-html-#{jupyter['subdomain']}.#{jupyter['domain']}.sh" do
+        source "jupyter_notebook_html.sh.erb"
+          variables(
+            :subdomain => subdomain,
+            :domain => domain,
+            :jupyter_subdomain => jupyter['subdomain'],
+            :jupyter_domain => jupyter['subdomain']
+          )
+      end
+      
+      # start a cronjob to call that shell script
+      cron_d "move_jupyter_notebooks" do
+        predefined_value '@midnight'
+        command "bash /srv/jupyter/#{app['subdomain']}.#{app['domain']}/notebook-html-#{jupyter['subdomain']}.#{jupyter['domain']}.sh"
+      end
+    
+    end
+    
   end
 end

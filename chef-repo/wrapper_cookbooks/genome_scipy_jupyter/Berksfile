@@ -6,6 +6,7 @@ cookbook 'openssl',           '~> 7.1.0'
 cookbook 'nginx',             '~> 7.0.0'
 cookbook 'poise-python',      '~> 1.6.0'
 cookbook 'nodejs',            '~> 4.0.0'
+cookbook 'acme',              '~> 3.1.0'
 
 cookbook 'genome_scipy_base', path: '../genome_scipy_base'
 cookbook 'genome_scipy_github', path: '../genome_scipy_github'
