@@ -93,6 +93,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.*venv/
+.jupyterhub-venv/
 
 # Spyder project settings
 .spyderproject
@@ -122,3 +124,7 @@ chef-repo/nodes/*.json
 ###################
 .vagrant
 .project
+.DS_Store
+
+.uwsgi
+app/.uwsgi

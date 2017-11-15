@@ -6,8 +6,18 @@
       "hostname" : "genome-scipy-app-development",
       "domain" : "genome-scipy.dev",
       "port" : 5001,
+      "nginx_config_template": "nginx.conf.erb",
+	  "ssl": false,
+	  "jupyter": true,
+	  "npm" : {
+	  	"global": [],
+	  	"local": []
+	  },
+	  "apt" : [],
+	  "commands" : [],
+	  "cron_jobs" : [],
       "git" : {
-        "repository" : "git@github.com:tyronemsaunders/genome_scipy.git",
+        "repository" : "git@github.com:tyronemsaunders/genome_scipy_app.git",
         "branch" : "master"
       },
       "config" : {
@@ -43,17 +53,27 @@
   ],
   "staging" : [
     {
-      "subdomain" : "app",
+      "subdomain" : "genome-staging",
       "hostname" : "genome-scipy-app-staging",
-      "domain" : "genome-scipy.com",
+      "domain" : "hiretyrone.com",
       "port" : 5001,
+      "nginx_config_template": "nginx.conf.erb",
+	  "ssl": true,
+	  "jupyter": true,
+	  "npm" : {
+	  	"global": [],
+	  	"local": []
+	  },
+	  "apt" : [],
+	  "commands" : [],
+	  "cron_jobs" : [],
       "git" : {
-        "repository" : "git@github.com:tyronemsaunders/genome_scipy.git",
+        "repository" : "git@github.com:tyronemsaunders/genome_scipy_app.git",
         "branch" : "master"
       },
       "config" : {
       	"uwsgi" : {
-      		"wsgi-file" : "/var/genome-scipy.com/app/wsgi.py",
+      		"wsgi-file" : "/var/hiretyrone.com/genome-staging/wsgi.py",
       		"protocol" : "uwsgi",
       		"module" : "wsgi",
       		"callable" : "app",
@@ -70,8 +90,8 @@
       },
       "programs" : {
       	"uwsgi" : {
-      		"command" : "/var/genome-scipy.com/app/.venv/bin/uwsgi --ini /var/genome-scipy.com/app/.uwsgi/app.ini",
-      		"directory" : "/var/genome-scipy.com/app",
+      		"command" : "/var/hiretyrone.com/genome-staging/.venv/bin/uwsgi --ini /var/hiretyrone.com/genome-staging/.uwsgi/app.ini",
+      		"directory" : "/var/hiretyrone.com/genome-staging",
       		"redirect_stderr" : true,
       		"stdout_logfile" : "/var/log/supervisor/uwsgi.log",
       		"stderr_logfile" : "/var/log/supervisor/uwsgi.error.log",
@@ -84,17 +104,27 @@
   ],
   "production" : [
     {
-      "subdomain" : "app",
+      "subdomain" : "genome",
       "hostname" : "genome-scipy-app-production",
-      "domain" : "genome-scipy.com",
+      "domain" : "hiretyrone.com",
       "port" : 5001,
+      "nginx_config_template": "nginx.conf.erb",
+	  "ssl": true,
+	  "jupyter": true,
+	  "npm" : {
+	  	"global": [],
+	  	"local": []
+	  },
+	  "apt" : [],
+	  "commands" : [],
+	  "cron_jobs" : [],
       "git" : {
-        "repository" : "git@github.com:tyronemsaunders/genome_scipy.git",
+        "repository" : "git@github.com:tyronemsaunders/genome_scipy_app.git",
         "branch" : "master"
       },
       "config" : {
       	"uwsgi" : {
-      		"wsgi-file" : "/var/genome-scipy.dev/app/wsgi.py",
+      		"wsgi-file" : "/var/hiretyrone.com/genome/wsgi.py",
       		"protocol" : "uwsgi",
       		"module" : "wsgi",
       		"callable" : "app",
@@ -111,8 +141,8 @@
       },
       "programs" : {
       	"uwsgi" : {
-      		"command" : "/var/genome-scipy.com/app/.venv/bin/uwsgi --ini /var/genome-scipy.com/app/.uwsgi/app.ini",
-      		"directory" : "/var/genome-scipy.com/app",
+      		"command" : "/var/hiretyrone.com/genome/.venv/bin/uwsgi --ini /var/hiretyrone.com/genome/.uwsgi/app.ini",
+      		"directory" : "/var/hiretyrone.com/genome",
       		"redirect_stderr" : true,
       		"stdout_logfile" : "/var/log/supervisor/uwsgi.log",
       		"stderr_logfile" : "/var/log/supervisor/uwsgi.error.log",

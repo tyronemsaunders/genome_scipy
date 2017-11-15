@@ -49,6 +49,25 @@ directory "#{node['env']['vars']["XDG_CONFIG_DIRS"]}/.aws" do
   mode "0770"
 end
 
+##############################
+# write AWS credentials file #
+##############################
+aws_credentials = {}
+aws_credentials['region'] = node['secrets']['aws']['region']
+aws_credentials['aws_access_key_id'] = node['secrets']['aws']['aws_access_key_id']
+aws_credentials['aws_secret_access_key'] = node['secrets']['aws']['aws_secret_access_key']
+
+# write the credentials file
+template "/etc/xdg/.config/.aws/credentials" do
+  source "app.ini.erb" # borrow the template for app.ini from uWSGI
+  mode 0660
+  owner node['app']['user']
+  variables(
+    :name => 'default',
+    :config => aws_credentials
+  )
+end 
+
 ###################
 # create ssh keys #
 ###################
