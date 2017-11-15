@@ -1,0 +1,9 @@
+[submodule "jupyter"]
+	path = jupyter
+	url = https://github.com/tyronemsaunders/genome_scipy_jupyter.git
+[submodule "jupyterhub"]
+	path = jupyterhub
+	url = https://github.com/tyronemsaunders/genome_scipy_jupyterhub.git
+[submodule "app"]
+	path = app
+	url = https://github.com/tyronemsaunders/genome_scipy_app.git
