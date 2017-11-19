@@ -13,5 +13,6 @@ cookbook 'genome_scipy_nginx', path: '../genome_scipy_nginx'
 cookbook 'genome_scipy_nodejs', path: '../genome_scipy_nodejs'
 cookbook 'genome_scipy_python', path: '../genome_scipy_python'
 cookbook 'genome_scipy_supervisor', path: '../genome_scipy_supervisor'
+cookbook 'genome_scipy_docker', path: '../genome_scipy_docker'
 
 metadata

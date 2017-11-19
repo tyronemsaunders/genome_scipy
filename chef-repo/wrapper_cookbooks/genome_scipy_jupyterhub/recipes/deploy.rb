@@ -187,7 +187,8 @@ apps.each do |app|
       :admin_users => node['secrets']['jupyterhub_users'][node.chef_environment]['admin'],
       :create_system_users => node['jupyterhub']['create_system_users'].to_s.capitalize,
       :notebook_dir => "/var/#{domain}/#{subdomain}/jupyterhub/notebooks",
-      :disable_user_config => node['jupyterhub']['disable_user_config'].to_s.capitalize
+      :disable_user_config => node['jupyterhub']['disable_user_config'].to_s.capitalize,
+      :dockerspawner_image => 'genome-scipy'
     )
   end
   

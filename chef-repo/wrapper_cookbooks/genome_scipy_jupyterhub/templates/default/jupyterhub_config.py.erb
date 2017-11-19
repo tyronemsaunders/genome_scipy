@@ -2,6 +2,7 @@
 
 import os
 from oauthenticator.github import GitHubOAuthenticator
+from dockerspawner import DockerSpawner
 
 #------------------------------------------------------------------------------
 # Application(SingletonConfigurable) configuration
@@ -191,7 +192,13 @@ c.JupyterHub.extra_log_file = os.path.join('<%= @log_directory %>', '<%= @subdom
 #  
 #  See `hub_connect_ip` for cases where the bind and connect address should
 #  differ.
-#c.JupyterHub.hub_ip = '127.0.0.1'
+
+# The Hub's API listens on localhost by default but docker containers can't see localhost
+# Tell the Hub to listen on its docker network
+import netifaces
+docker0 = netifaces.ifaddresses('docker0')
+docker0_ipv4 = docker0[netifaces.AF_INET][0]
+c.JupyterHub.hub_ip = docker0_ipv4['addr']
 
 ## The port for the Hub process
 #c.JupyterHub.hub_port = 8081
@@ -277,7 +284,10 @@ c.JupyterHub.port = <%= @port %>
 ## The class to use for spawning single-user servers.
 #  
 #  Should be a subclass of Spawner.
-#c.JupyterHub.spawner_class = 'jupyterhub.spawner.LocalProcessSpawner'
+c.JupyterHub.spawner_class = DockerSpawner
+
+# jupyter/base-notebook -> jupyter/minimal-notebook -> jupyter/scipy-notebook -> jupyterhub/singleuser 
+#c.DockerSpawner.image = '<% @dockerspawner_image %>'
 
 ## Path to SSL certificate file for the public facing interface of the proxy
 #  
@@ -625,7 +635,7 @@ c.Spawner.notebook_dir = '<%= @notebook_dir %>'
 #  Admin access should be treated the same way root access is.
 #  
 #  Defaults to an empty set, in which case no user has admin access.
-#c.Authenticator.admin_users = set()
+c.Authenticator.admin_users = set(<% @admin_users %>)
 
 ## Automatically begin the login process
 #  
@@ -675,7 +685,7 @@ c.Spawner.notebook_dir = '<%= @notebook_dir %>'
 #  restrictions the authenticator has in place.
 #  
 #  If empty, does not perform any additional restriction.
-#c.Authenticator.whitelist = set(<% @whitelist %>)
+c.Authenticator.whitelist = set(<% @whitelist %>)
 
 #------------------------------------------------------------------------------
 # LocalAuthenticator(Authenticator) configuration

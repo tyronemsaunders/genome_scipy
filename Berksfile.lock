@@ -5,6 +5,8 @@ DEPENDENCIES
     path: chef-repo/wrapper_cookbooks/genome_scipy_aws
   genome_scipy_base
     path: chef-repo/wrapper_cookbooks/genome_scipy_base
+  genome_scipy_docker
+    path: chef-repo/wrapper_cookbooks/genome_scipy_docker
   genome_scipy_github
     path: chef-repo/wrapper_cookbooks/genome_scipy_github
   genome_scipy_hosts
@@ -35,9 +37,11 @@ GRAPH
   build-essential (8.0.3)
     mingw (>= 1.1)
     seven_zip (>= 0.0.0)
+  chef-apt-docker (2.0.4)
   compat_resource (12.19.0)
   cron (4.2.0)
     compat_resource (>= 0.0.0)
+  docker (2.17.0)
   genome_scipy_app (0.1.0)
     acme (~> 3.1.0)
     cron (~> 4.2.0)
@@ -61,6 +65,9 @@ GRAPH
     sudo (~> 3.5.3)
     users (~> 5.2.1)
     vim (~> 2.0.2)
+  genome_scipy_docker (0.1.0)
+    chef-apt-docker (~> 2.0.4)
+    docker (~> 2.17.0)
   genome_scipy_github (0.1.0)
   genome_scipy_hosts (0.1.0)
     hostsfile (~> 3.0.1)
@@ -80,6 +87,7 @@ GRAPH
   genome_scipy_jupyterhub (0.1.0)
     acme (~> 3.1.0)
     genome_scipy_base (>= 0.0.0)
+    genome_scipy_docker (>= 0.0.0)
     genome_scipy_github (>= 0.0.0)
     genome_scipy_nginx (>= 0.0.0)
     genome_scipy_nodejs (>= 0.0.0)

@@ -208,7 +208,7 @@ Vagrant.configure(2) do |config|
             chef.environment = chef_environment || "development"
             chef.node_name = machine_name
             chef.encrypted_data_bag_secret_key_path = "chef-repo/.chef/encrypted_data_bag_secret"
-            chef.custom_config_path = "chef-repo/lib/vagrant_chef_solo.rb"
+            chef.custom_config_path = "chef-repo/.chef/vagrant_chef_solo.rb"
             chef.provisioning_path = "/etc/chef"
             chef.log_level = :info
             chef.run_list = node_json["run_list"]

@@ -82,6 +82,7 @@
 	"genome_scipy_python::install",
 	"genome_scipy_nodejs::install",
 	"genome_scipy_supervisor::install",
+	"genome_scipy_docker::install",
 	"genome_scipy_jupyterhub::selfsigned-certificate",
 	"genome_scipy_jupyterhub::deploy",
 	"genome_scipy_jupyter::selfsigned-certificate",

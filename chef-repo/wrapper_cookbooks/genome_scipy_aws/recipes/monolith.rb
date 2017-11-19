@@ -60,6 +60,7 @@ machine "genome-scipy.#{app['domain']}" do
   recipe "genome_scipy_python::install"
   recipe "genome_scipy_nodejs::install"
   recipe "genome_scipy_supervisor::install"
+  recipe "genome_scipy_docker::install"
   recipe "genome_scipy_jupyterhub::selfsigned-certificate"
   recipe "genome_scipy_jupyterhub::deploy"
   recipe "genome_scipy_jupyterhub::letsencrypt"
